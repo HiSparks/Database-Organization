@@ -13,11 +13,11 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Современные операционные системы (конспект)
-email: the.mark.fender@gmail.com, reznikovmisha21111998@gmail.com
-telegram: mark_fender, ReznikovMihail
+title: Организация баз данных (учебное пособие)
+email: the.mark.fender@gmail.com
+telegram: mark_fender
 description: >- # this means to ignore newlines until "baseurl:"
-  Современные операционные системы (конспект). Авторы книги Э. Таненбаум, Х. Бос
+  Организация баз данных (учебное пособие). Авторы книги А.В. Шостак, В.И. Дужий
 baseurl: "/Database-Organization" # the subpath of your site, e.g. /blog
 url: "mdlEducation.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
