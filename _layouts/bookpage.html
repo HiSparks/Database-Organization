@@ -23,6 +23,16 @@
           color: "#2a7ae2"
         });
       });
+
+      $($("<a href='#'>Ответ</a>").click(function(e){
+        e.preventDefault();
+        $(this).next().toggleClass("is-visible");
+
+        if($(this).text() === "Ответ") $(this).html("Скрыть");
+        else $(this).html("Ответ");
+
+      })).insertBefore(".question__answer");
+
   	</script>
   </body>
   
