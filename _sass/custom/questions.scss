@@ -1,0 +1,14 @@
+.question {
+	&__answer {
+		display: none;
+
+		background-color: #eeeeee;
+		padding: 20px;
+		margin: 10px auto;
+		border-radius: 5px;
+		
+		&.is-visible {
+			display: block;
+		}
+	}
+}
