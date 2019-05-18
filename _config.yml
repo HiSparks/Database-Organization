@@ -30,9 +30,11 @@ plugins:
   - jekyll-feed
 defaults:
   - scope:
-      path: "assets/images"
+      path: "assets/imges"
     values:
       image: true
+sass:
+  sass_dir: _sass
 
 
 # Exclude from processing.
