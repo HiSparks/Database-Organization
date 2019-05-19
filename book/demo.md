@@ -117,7 +117,7 @@ $$
 
 ### **Графики функций:**
 	
-<iframe src="https://grapher.mathpix.com/?latexList=%5B%22z%3D7%5C%5Ccdot%20x%5C%5Ccdot%5C%5Cfrac%7By%7D%7Be%7D%5E%7B%20%7D%5C%5Cleft(x%5E2%2By%5E2%5C%5Cright)%22%5D#settings-modal" width="100%" height="500px" style="border: 1px solid #ccc" frameborder="0" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+<iframe src="https://mdleducation.github.io/grapher/?latexList=%5B%22z%3D7%5C%5Ccdot%20x%5C%5Ccdot%5C%5Cfrac%7By%7D%7Be%7D%5E%7B%20%7D%5C%5Cleft(x%5E2%2By%5E2%5C%5Cright)%22%5D#settings-modal" width="100%" height="500px" style="border: 1px solid #ccc" frameborder="0" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
 
 *http://grapher.mathpix.com*
 
@@ -125,6 +125,6 @@ $$
 
 ### **3D модели:**
 
-<iframe src="https://tmsyst.com/obj-813/demo/webgl_loader_collada.html" width="100%" height="500px" style="border: 1px solid #ccc" frameborder="0" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+<iframe src="https://mdleducation.github.io/Database-Organization/demo/webgl_loader_collada.html" width="100%" height="500px" style="border: 1px solid #ccc" frameborder="0" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
 
 *THREE JS lib, .dae - 3d object*
