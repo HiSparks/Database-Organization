@@ -18,7 +18,6 @@ lang: ru
 ```sql
 SELECT * FROM Usp WHERE Id_Stud = (SELECT Id FROM Student WHERE Name = 'Петров')
 ```
-
 Как работает запрос SQL со связанным подзапросом?
 
 1.	Выбирается строка из таблицы USP, имя которой указано во внешнем запросе.
