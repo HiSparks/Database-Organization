@@ -16,3 +16,9 @@
 	width: 100%;
 	overflow: auto;
 }
+/*mathJax fix*/
+.MathJax_Display {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+}
