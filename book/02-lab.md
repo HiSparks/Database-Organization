@@ -23,7 +23,7 @@ lang: ru
 Создать объект	Удалить объект	Модифицировать объект
 CREATE TABLE	DROP TABLE	ALTER TABLE
 
-![Схема выполнения предложений SQL-оператора SELECT](../assets/images/lab-2-01.png)
+![Схема выполнения предложений SQL-оператора SELECT](../assets/images/lab-2-01.jpg)
 
 Изменяют данные таблиц
 INSERT
