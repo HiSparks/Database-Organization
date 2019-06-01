@@ -150,6 +150,7 @@ SELECT s.name, g.name FROM Groups g, Student s
 | 4  | Семёнов  | 3    | 4,33    | 235,76 |
 
 При выполнении SQL-оператора
+
 ```sql
 Select s.name,g.name From Groups g, Student s
 ```
