@@ -18,15 +18,15 @@
           {% for p in navigation_pages %}
             {% if p.navigation_weight == prev_index  %}
               <a href="{{ p.url | prepend:site.baseurl }}">
-                <div class="navigation-wrapper__item--prev">
-                  Назад
+                <div class="navigation-wrapper__item navigation-wrapper__item--prev">
+                  <span>Назад</span> &#9664;
                 </div>
               </a>
             {% endif %}
             {% if p.navigation_weight == next_index  %}
               <a href="{{ p.url | prepend:site.baseurl }}">
-                <div class="navigation-wrapper__item--next">
-                  Далее
+                <div class="navigation-wrapper__item navigation-wrapper__item--next">
+                  <span>Далее</span> &#9654;
                 </div>
               </a>
             {% endif %}
