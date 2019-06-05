@@ -2,6 +2,7 @@
 title: "Лекция 3. Нормальные формы отношений"
 layout: bookpage
 lang: ru
+navigation_weight: 3
 ---
 
 # Лекция 3. Нормальные формы отношений

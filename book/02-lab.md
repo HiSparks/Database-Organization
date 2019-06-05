@@ -2,6 +2,7 @@
 title: "Лабораторная работа 2. Создание структуры распределенной базы данных"
 layout: bookpage
 lang: ru
+navigation_weight: 19
 ---
 
 

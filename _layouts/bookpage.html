@@ -11,6 +11,28 @@
       <div class="wrapper">
         {{ content }}
         {{ page.pdf_url }}
+        <nav class="navigation-wrapper">
+          {% assign next_index = page.navigation_weight | plus: 1 %}
+          {% assign prev_index = page.navigation_weight | minus: 1 %}
+          {% assign navigation_pages = site.html_pages | sort: 'navigation_weight' %}
+          {% for p in navigation_pages %}
+            {% if p.navigation_weight == prev_index  %}
+              <a href="{{ p.url | prepend:site.baseurl }}">
+                <div class="navigation-wrapper__item--prev">
+                  Назад
+                </div>
+              </a>
+            {% endif %}
+            {% if p.navigation_weight == next_index  %}
+              <a href="{{ p.url | prepend:site.baseurl }}">
+                <div class="navigation-wrapper__item--next">
+                  Далее
+                </div>
+              </a>
+            {% endif %}
+          {% endfor %}
+        </nav>
+
       </div>
     </main>
 

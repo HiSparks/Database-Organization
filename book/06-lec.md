@@ -1,7 +1,8 @@
 ---
-title: "Лабораторная работа 6. Оператор выборки данных SELECT"
+title: "Лекция 6. Оператор выборки данных SELECT"
 layout: bookpage
 lang: ru
+navigation_weight: 6
 ---
 
 # Оператор выборки данных SELECT

@@ -31,8 +31,10 @@ plugins:
 defaults:
   - scope:
       path: "assets/images"
+      type: "pages"
     values:
       image: true
+      pdf: true
 sass:
   sass_dir: _sass
 

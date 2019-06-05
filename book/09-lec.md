@@ -2,6 +2,7 @@
 title: "Лекция 9. Вложенные запросы"
 layout: bookpage
 lang: ru
+navigation_weight: 9
 ---
 
 # Лекция 9. Вложенные запросы
