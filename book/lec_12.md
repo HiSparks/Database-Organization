@@ -1,0 +1,311 @@
+---
+title: "Лекция 12. Вычисления в DataSet и выполнение DML-операций в разъединенном окружении"
+layout: bookpage
+lang: ru
+navigation_weight: 12
+--- 
+
+# Лекция 12. Вычисления в DataSet и выполнение DML-операций в разъединенном окружении
+
+## 1. Вычисления в DATASET
+
+Вычисления над данными таблиц БД:
+
+- путем непосредственных вычислений над значениями данных таблицы в наборе данных DataSet,
+- с помощью SQL–запросов над таблицей БД,
+- путем вычислений над значениями данных “сетки” – элемента DataGridView.
+
+**Пример**. Создание вычислимого поля в таблице БД.
+
+Пусть в таблице есть поле `Year_b` ("Год рождения"). Необходимо cоздать новый столбец с заголовком "Возраст", добавить его в таблицу, заполнить его данными (вычисление возраста по году рождения) и показать новую таблицу.
+
+```csharp
+
+//кнопка "Возраст" - создание дополнительного поля "Возраст"
+private void age_Click(object sender, EventArgs e)
+{
+	DataColumn dc = new DataColumn();// создание столбца
+	dc.Caption = "Возраст"; // заголовок поля
+	dc.ColumnName = "NumberYear";// имя поля
+	
+	// тип данных элементов столбца
+	dc.DataType = System.Type.GetType("System.Int32");
+	dc.Unique = false;
+	dc.DefaultValue = 20; // значение по умолчанию
+	
+	// добавить столбец в таблицу
+	ds.Tables[0].Columns.Add(dc);
+
+	//вычисление возраста и вставка его в строки нового столбца
+	for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+		ds.Tables[0].Rows[i]["NumberYear"] = (DateTime.Today.Year) - Convert.ToInt32(ds.Tables[0].Rows[i]["Year_b"]);
+		
+	//подключение к сетке измененной таблицы
+	dGV.DataSource = ds.Tables[0];
+	
+	// задание заголовка нового столбца в сетке
+	dGV.Columns["NumberYear"].
+	HeaderText = dc.Caption;
+}
+
+```
+
+
+![](../assets/images/12_01.jpg)
+
+**Пример.** На основании таблицы в DataSet выполнить следующие вычисления:
+
+- определить средний возраст студентов в таблице;
+- определить средний бал по математике;
+- определить средний балл по Math для группы '525'.
+
+```csharp 
+
+// кнопка "Вычислить" - вычисления над данными БД
+private void compute_Click(object sender, EventArgs e) {
+
+	//вычисление среднего возраста студентов в таблице
+	double sr = 0;
+	DataRow row; // ds объект класса DataSet
+
+	for (int i = 0; i < ds.Tables[0].Rows.Count; i++) {
+		row = ds.Tables[0].Rows[i];
+		// возраст в ячейке под номером 9
+		sr = sr + Convert.ToDouble(row["NumberYear"]);
+	}
+
+	label2.Text = "Средний возраст = ";
+
+	// использование форматирования при выводе
+	label2.Text += String.Format("{0:f2}", (sr / ds.Tables[0].Rows.Count));
+
+	// средний бал по математике
+	sr = 0;
+
+	for (int i = 0; i < ds.Tables[0].Rows.Count; i++) {
+		row = ds.Tables[0].Rows[i];
+		sr = sr + Convert.ToDouble(row["Math"]);
+	}
+
+	label2.Text += " Средний бал по Math = ";
+
+	label2.Text += String.Format("{0:f2}", (sr / ds.Tables[0].Rows.Count)); // вычисление среднего балла по Math для группы '525'
+
+	// с помощью метода Compute класса DataTable
+	object objAvg = ds.Tables[0].Compute("Avg(Math)","Group = '525'");
+
+	label3.Text =" Средней балл 525 группы по Math= " +
+	String.Format("{0:f2}",Convert.ToDouble(objAvg));
+}
+
+```
+
+Аналогичные вычисления можно было бы выполнить на основании значений в ячейках элемента "сетка" dataGridView, обрабатывая значения `dataGridView1[p,k].Value`.
+
+![](../assets/images/12_02.jpg)
+
+### Метод **Compute** класса DataTable.
+
+Метод Compute позволяет выполнять *агрегатные* запросы к отдельным столбцам объекта DataTable на основе заданных в фильтре критериев поиска. Метод Compute *возвращает* значение агрегатного выражения, основываясь на содержимом объекта DataTable.
+
+Метод Compute определен следующим образом
+
+```csharp
+public object Compute( string expression, string filter); 
+```
+где: 
+
+- expression - вычисляемое выражение,
+- filter - фильтр, ограничивающий число строк, используемых выражением,
+- возвращаемым значением является класс Object, которому задан результат вычисления.
+
+**Пример.** Использование для вычислений свойства **Expression** класса DataColumn.
+
+Вычислить на основании таблицы в DataSet:
+
+1. средний балл каждого студента таблицы в новом столбце;
+2. средний бал для группы '525';
+3. средний балл по всем предметам по таблице.
+
+```csharp
+
+//кнопка "Вычисления 2" - средний балл студента, по группе, по таблице
+private void compute2_Click(object sender, EventArgs e) {//создание столбца
+	DataColumn dc = new DataColumn();
+	dc.Caption = "Ср.балл"; // заголовок столбца
+
+	dc.ColumnName = "Srbal"; // имя столбца
+
+	// тип данных элементов столбца
+	dc.DataType = System.Type.GetType("System.Single");
+	dc.Unique = false;
+
+	// значение по умолчанию
+	dc.DefaultValue = 3;
+
+	//задание выражения для вычисления среднего балла студента
+	dc.Expression = "(Math+OOP+ODB)/3";
+
+	// добавить столбец в таблицу БД ds типа DataSet
+	ds.Tables[0].Columns.Add(dc);
+
+	// подключение к сетке таблицы
+	bs.DataSource = ds.Tables[0];
+	dGV.DataSource = bs;
+
+	// задание ширины нового столбца в сетке
+	dGV.Columns[dGV.ColumnCount - 1].Width = 50;
+
+	// задание заголовка нового столбца в сетке
+	dGV.Columns[dGV.ColumnCount - 1].HeaderText = dc.Caption;
+
+	// вычисление среднего балла группы ‘525’
+	object objAvg = ds.Tables[0].Compute("Avg(Srbal)", "Group = '525'");
+
+	// определение типа данных
+	label2.Text = "Средний балл группы 525 = " + String.Format("{0:f2}", objAvg) + " Type = " + bjAvg.GetType().ToString();
+
+	// вычисление среднего балла всех студентов таблицы
+	objAvg = ds.Tables[0].Compute("Avg(Srbal)", "id > 0");
+
+	label3.Text = "Средний балл всех = " + String.Format("{0:f2}", objAvg);
+}
+```
+
+## Выполнение DML-операций (Insert, Delete, Update)
+
+Операция **вставки** записей (Insert) в БД:
+
+- вставка с помощью DML-команды Insert,
+- вставка с использованием строк класса DataRow,
+- вставка с использованием возможностей DataGridView.
+
+Операции **удаления** записей (Delete) из БД:
+
+- удаление с помощью DML-команды Delete,
+- удаление методом Delete класса Rows по номеру,
+- удаление с использованием возможностей DataGridView.
+
+Операции **редактирования** записей (Update) в БД:
+
+- модификация с помощью DML-команды Update,
+- модификация с использованием строк DataRow,
+- модификация с использованием возможностей DataGridView.
+
+Пусть из серверной части MS SQL Server используется таблица `Group (Id, name, id_facility, sr_ball)` базы данных Exampl.
+
+Таблица Group при проектировании имеет вид:
+
+![](../assets/images/12_03.jpg)
+
+```csharp
+
+// кнопка "Query" - выполнение запроса
+private void query_Click(object sender, EventArgs e)
+{
+
+	// в textBox1.Text записываем запрос 
+	if (textBox1.Text != "") { // удаление старой связи сетки
+
+		dGV.DataSource = null;
+		com = con.CreateCommand(); // создание команды
+
+		com.CommandText = textBox1.Text; // ввод текста команды
+
+		//ad = new System.Data.SqlClient.SqlDataAdapter(textBox1.Text, con);
+
+		// создание адаптера
+		ad = new SqlDataAdapter(com);
+
+		DataTable tab = new DataTable();
+		ad.Fill(tab); // заполнение таблицы
+
+		if (tab.Rows.Count != 0) { // визуализация сетки 
+			dGV.DataSource = tab;
+			for (int i = 0; i < dGV.ColumnCount; i++) dGV.Columns[i].Width = 55;
+		}
+		else { // если нет результатов запроса 
+			dGV.DataSource = null;
+			MessageBox.Show("Строк нет!", "Query");
+		}
+	}
+}
+```
+
+В обработчике `delete_Click` выполняются основные действия по *удалению записей из БД* и визуализации результатов удаления в сообщении.
+
+```csharp
+
+// кнопка "Delete" - удаление строки
+private void delete_Click(object sender, EventArgs e)
+{
+	if (textBox3.Text != ""){ // создание объекта com класса SqlCommand
+
+		com = con.CreateCommand();
+
+		//в textBox3.Text записываем оператор удаления
+		string del = string.Format(textBox3.Text);
+		com = new SqlCommand(del, con);
+
+		// задание свойства DeleteCommand адаптера
+		ad.DeleteCommand = com;
+
+		// проверка состояния соединения с источником данных
+		if (con.State != ConnectionState.Open) con.Open();
+
+		int result=0;
+		DialogResult res = MessageBox.Show("Удалить строку?", "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+		if (res == DialogResult.Yes) {
+
+			// выполнение команды удаления и получение результата этой команды
+			result = ad.DeleteCommand.ExecuteNonQuery();
+
+		} //сообщение о результате удаления
+
+		if ( result == 0) MessageBox.Show("Удаленных строк нет!", "Сообщение");
+		else MessageBox.Show("Удалено "+ result.ToString()+" строк!", "Сообщение");
+
+		con.Close();
+	}
+}
+```
+
+В обработчике `insert_Click` выполняются основные действия по *вставке записей в БД* и визуализации результатов вставки в сообщении:
+
+```csharp
+
+string ins = string.Format(textBox2.Text);
+com = new SqlCommand(ins, con);
+ad.InsertCommand = com;
+result= ad.InsertCommand.ExecuteNonQuery();
+
+// сообщение о результате вставки строки
+if (result == 0) MessageBox.Show("Вставленных строк нет!", "Сообщение");
+
+else MessageBox.Show("Вставлено " + result.ToString() + " строк!", "Сообщение");
+
+```
+
+При попытке выполнить следующий DML–оператор вставки
+
+`insert into group (name, id_facility, sr_ball) values ('733',7,3)`
+
+программа выдаст сообщение о нарушении ссылочной целостности в колонке id таблицы facility (так как в таблице facility нет id равного 7).
+
+![](../assets/images/12_04.jpg)
+
+В обработчике `update_Click` выполняются основные действия по *редактированию записей в БД* и визуализации результатов редактирования в сообщении.
+
+```csharp
+string upd = string.Format(textBox4.Text);
+
+com = new SqlCommand(upd, con);
+ad.UpdateCommand = com;
+result = ad.UpdateCommand.ExecuteNonQuery();
+
+// сообщение о результате вставки строки
+if (result == 0) MessageBox.Show("Измененных строк нет!", "Сообщение");
+
+else MessageBox.Show("Изменено " + result.ToString() + " строк!", "Сообщение");
+```

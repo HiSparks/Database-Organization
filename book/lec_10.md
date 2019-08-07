@@ -2,7 +2,7 @@
 title: "Лекция 10. Вние DML-операций в разъединенном окружении"
 layout: bookpage
 lang: ru
-navigation_weight: 12
+navigation_weight: 10
 --- 
 
 

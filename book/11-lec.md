@@ -2,7 +2,6 @@
 title: "Лекция 11. Представления и индексы"
 layout: bookpage
 lang: ru
-navigation_weight: 11
 --- 
 
 # Лекция 11. Представления и индексы

@@ -2,6 +2,7 @@
 title: "Лекция 1. Введение"
 layout: bookpage
 lang: ru
+navigation_weight: 1
 ---
 
 
@@ -42,6 +43,7 @@ EDX - www.edx.org
 Course: Querying Data with Transact-SQL
 (FREE mode)
 
+![](../assets/images/1_02.jpg)
 
 Лекция 1: Введение (Основы использования баз данных)
 # 1. Структура курса. Литература.

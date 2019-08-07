@@ -2,7 +2,6 @@
 title: "Лекция 7. Оператор выборки данных SELECT (2)"
 layout: bookpage
 lang: ru
-navigation_weight: 7
 ---
 
 # Лекция 7. Оператор выборки данных SELECT (2)

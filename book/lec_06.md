@@ -2,7 +2,9 @@
 title: "Лекция 6: Оператор выборки данных SELECT – ЧАСТЬ 2"
 layout: bookpage
 lang: ru
+navigation_weight: 6
 ---
+
 # 1. IN, BETWEEN, LIKE, IS NULL
 Операторы при построении предикатов:
 

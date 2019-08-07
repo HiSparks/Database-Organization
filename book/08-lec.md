@@ -2,7 +2,6 @@
 title: "Лекция 8. Группировка и сортировка полей в операторе SELECT"
 layout: bookpage
 lang: ru
-navigation_weight: 8
 ---
 
 # Лекция 8. Группировка и сортировка полей в операторе SELECT

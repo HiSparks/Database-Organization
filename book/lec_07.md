@@ -2,6 +2,7 @@
 title: "Лекция 7: Группировка и сортировка полей в операторе SELECT"
 layout: bookpage
 lang: ru
+navigation_weight: 7
 ---
 
 # 1. Предложения  GROUP BY  и HAVING
@@ -201,16 +202,20 @@ SELECT  WHERE  GROUP BY  HAVING  ORDERBY
 - *Пример*. Пусть существует таблица USP (Id, Id_Stud, Ocenka, Id_Sub, Date). Из таблицы STUDENT (id, name, sr_ball, id_group, city) известна фамилия студента («Петров»), но неизвестно значение поля Id_Stud  (внешний ключ таблицы USP) для него.
 
 - Требуется извлечь данные обо всех оценках этого студента:
+
+```sql
+SELECT * FROM USP WHERE
+
+ID_STUD = (SELECT ID FROM STUDENT WHERE NAME = 'Петров')
+
+```
+
 ```sql
 SELECT * FROM USP WHERE
 
 ID_STUD = (SELECT ID FROM STUDENT WHERE NAME = 'Петров')
 ```
-```sql
-SELECT * FROM USP WHERE
 
-ID_STUD = (SELECT ID FROM STUDENT WHERE NAME = 'Петров')
-```
 - выбирается строка из таблицы USP, имя которой указано во внешнем запросе;
 
 - выполняется подзапрос и полученное значение применяется для анализа этой строки в условии предложения WHERE внешнего запроса;
