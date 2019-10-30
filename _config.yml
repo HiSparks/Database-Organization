@@ -19,7 +19,7 @@ telegram: mark_fender
 description: >- # this means to ignore newlines until "baseurl:"
   Организация баз данных (учебное пособие). Авторы книги А.В. Шостак, В.И. Дужий к.т.н. доц. Боярчук А. В.
 baseurl: "/Database-Organization" # the subpath of your site, e.g. /blog
-url: "mdlEducation.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "HiSparks.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 
